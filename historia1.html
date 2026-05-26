@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>História do Dinheiro</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+
+    min-height:100vh;
+
+    background:
+    linear-gradient(135deg,#4e2b12,#9a5a2d,#e0b07a);
+
+    padding:40px 20px;
+
+    color:#2e1b0e;
+
+    transition:0.7s;
+}
+
+/* TOPO */
+
+.topo{
+
+    width:100%;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    margin-bottom:40px;
+}
+
+.titulo-principal{
+
+    font-size:55px;
+    font-weight:bold;
+
+    color:white;
+
+    text-shadow:3px 3px 10px rgba(0,0,0,0.3);
+}
+
+.voltar{
+
+    text-decoration:none;
+
+    background:#5c3519;
+
+    color:white;
+
+    padding:14px 28px;
+
+    border-radius:14px;
+
+    font-size:18px;
+    font-weight:bold;
+
+    transition:0.3s;
+}
+
+.voltar:hover{
+
+    transform:scale(1.05);
+}
+
+/* TIMELINE */
+
+.timeline{
+
+    width:100%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    flex-wrap:wrap;
+
+    gap:15px;
+
+    margin-bottom:35px;
+}
+
+.timeline button{
+
+    border:none;
+
+    padding:16px 22px;
+
+    border-radius:16px;
+
+    background:rgba(255,255,255,0.9);
+
+    font-size:17px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:0.3s;
+
+    min-width:170px;
+}
+
+.timeline button:hover{
+
+    transform:translateY(-4px);
+}
+
+.timeline button.ativo{
+
+    background:#5c3519;
+
+    color:white;
+}
+
+/* CONTEUDO */
+
+.conteudo{
+
+    background:rgba(255,255,255,0.95);
+
+    border-radius:35px;
+
+    padding:40px;
+
+    display:flex;
+
+    gap:40px;
+
+    align-items:flex-start;
+
+    box-shadow:0 10px 30px rgba(0,0,0,0.25);
+
+    transition:0.5s;
+}
+
+.imagem{
+
+    width:420px;
+    min-width:420px;
+
+    border-radius:25px;
+
+    overflow:hidden;
+
+    box-shadow:0 10px 20px rgba(0,0,0,0.2);
+}
+
+.imagem img{
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    display:block;
+}
+
+.texto{
+
+    flex:1;
+}
+
+.texto h2{
+
+    font-size:42px;
+
+    margin-bottom:20px;
+
+    color:#5c3519;
+
+    transition:0.4s;
+}
+
+.texto p{
+
+    font-size:20px;
+
+    line-height:1.9;
+
+    color:#3f2b1c;
+
+    text-align:justify;
+}
+
+/* RESPONSIVO */
+
+@media(max-width:1000px){
+
+    .conteudo{
+
+        flex-direction:column;
+    }
+
+    .imagem{
+
+        width:100%;
+        min-width:100%;
+    }
+
+}
+
+@media(max-width:700px){
+
+    .titulo-principal{
+
+        font-size:34px;
+    }
+
+    .texto h2{
+
+        font-size:30px;
+    }
+
+    .texto p{
+
+        font-size:18px;
+    }
+
+    .timeline button{
+
+        min-width:140px;
+
+        font-size:15px;
+    }
+
+}
+
+</style>
+</head>
+<body>
+
+<!-- TOPO -->
+
+<div class="topo">
+
+    <h1 class="titulo-principal">
+        História do Dinheiro
+    </h1>
+
+    <a href="menu.html" class="voltar">
+        ← Voltar
+    </a>
+
+</div>
+
+<!-- TIMELINE -->
+
+<div class="timeline">
+
+    <button class="ativo" onclick="trocar(0,this)">
+        Escambo
+    </button>
+
+    <button onclick="trocar(1,this)">
+        Moeda-Mercadoria
+    </button>
+
+    <button onclick="trocar(2,this)">
+        Moedas Metálicas
+    </button>
+
+    <button onclick="trocar(3,this)">
+        Papel-Moeda
+    </button>
+
+    <button onclick="trocar(4,this)">
+        Bancos
+    </button>
+
+    <button onclick="trocar(5,this)">
+        Cartões
+    </button>
+
+    <button onclick="trocar(6,this)">
+        Criptomoedas
+    </button>
+
+</div>
+
+<!-- CONTEUDO -->
+
+<div class="conteudo">
+
+    <div class="imagem">
+
+        <img id="imagem"
+        src="escambo.png">
+
+    </div>
+
+    <div class="texto">
+
+        <h2 id="titulo">
+            Escambo
+        </h2>
+
+        <p id="texto">
+📅 Período aproximado: 9000 a.C. até 1200 a.C. O escambo foi a primeira forma de comércio da humanidade. Antes do dinheiro existir, as pessoas realizavam trocas diretas de produtos e serviços. Um agricultor podia trocar trigo por carne, roupas ou ferramentas. Já pescadores trocavam peixes por frutas, sementes ou objetos de barro. Esse sistema começou nas primeiras civilizações agrícolas da Mesopotâmia, Egito e outras regiões antigas. Apesar de funcionar no início, o escambo possuía vários problemas. As duas pessoas precisavam querer exatamente aquilo que a outra tinha para oferecer. Imagine alguém tentando trocar galinhas por peixe, mas o pescador naquele dia não queria galinhas. Isso dificultava muito o comércio. Mesmo com suas limitações, o escambo foi extremamente importante porque marcou o nascimento da economia e das primeiras relações comerciais entre povos.
+        </p>
+
+    </div>
+
+</div>
+
+<script>
+
+const dados = [
+
+{
+titulo:"Escambo",
+
+cor:"#7a3e12",
+
+gradiente:"linear-gradient(135deg,#4e2b12,#9a5a2d,#e0b07a)",
+
+imagem:"escambo.png",
+
+texto:`📅 Período aproximado: 9000 a.C. até 1200 a.C. O escambo foi a primeira forma de comércio da humanidade. Antes do dinheiro existir, as pessoas realizavam trocas diretas de produtos e serviços. Um agricultor podia trocar trigo por carne, roupas ou ferramentas. Já pescadores trocavam peixes por frutas, sementes ou objetos de barro. Esse sistema começou nas primeiras civilizações agrícolas da Mesopotâmia, Egito e outras regiões antigas. Apesar de funcionar no início, o escambo possuía vários problemas. As duas pessoas precisavam querer exatamente aquilo que a outra tinha para oferecer. Imagine alguém tentando trocar galinhas por peixe, mas o pescador naquele dia não queria galinhas. Isso dificultava muito o comércio. Mesmo com suas limitações, o escambo foi extremamente importante porque marcou o nascimento da economia e das primeiras relações comerciais entre povos.`
+
+},
+
+{
+titulo:"Moeda-Mercadoria",
+
+cor:"#b8860b",
+
+gradiente:"linear-gradient(135deg,#8b6508,#d4a017,#f7d774)",
+
+imagem:"moeda.png",
+
+texto:`📅 Período aproximado: 3000 a.C. até 600 a.C. Com o crescimento das cidades e do comércio, alguns produtos passaram a ser usados como forma oficial de pagamento. Esses produtos ficaram conhecidos como moeda-mercadoria. Diferentes regiões utilizavam itens diferentes como sal, gado, arroz, chá, cacau e conchas raras. Na Roma Antiga, soldados recebiam parte do pagamento em sal, e foi daí que surgiu a palavra salário. Esse sistema facilitou bastante o comércio porque as pessoas já reconheciam valor nesses produtos. Mesmo assim, ainda existiam problemas como dificuldade de transporte, produtos que estragavam e falta de padronização. A moeda-mercadoria foi uma das etapas mais importantes para o surgimento das moedas modernas.`
+
+},
+
+{
+titulo:"Moedas Metálicas",
+
+cor:"#6d6d6d",
+
+gradiente:"linear-gradient(135deg,#434343,#9e9e9e,#d9d9d9)",
+
+imagem:"moeda.jpg",
+
+texto:`📅 Início aproximado: 600 a.C. As primeiras moedas metálicas surgiram na Lídia, região onde atualmente fica a Turquia. Essas moedas eram feitas de ouro, prata e bronze. Elas revolucionaram completamente o comércio porque tinham peso padronizado, valor definido e eram mais fáceis de transportar. Governos e reis começaram a fabricar moedas oficiais com símbolos do reino e rostos de imperadores para aumentar a confiança da população. As moedas rapidamente se espalharam pela Grécia, Roma e outras civilizações antigas. Esse modelo de moeda metálica dominou o mundo por mais de 2000 anos.`
+
+},
+
+{
+titulo:"Papel-Moeda",
+
+cor:"#0d7a3f",
+
+gradiente:"linear-gradient(135deg,#0a5f31,#16a34a,#6ee7b7)",
+
+imagem:"dinheiro.jpg",
+
+texto:`📅 Início aproximado: Século VII (700 d.C.) O papel-moeda surgiu na China durante a Dinastia Tang e ganhou força na Dinastia Song. Comerciantes estavam cansados de carregar moedas metálicas extremamente pesadas durante viagens longas. Então começaram a utilizar certificados de papel representando valores em ouro e prata guardados. No começo, muitas pessoas desconfiavam do dinheiro de papel, mas com o apoio dos governos o sistema foi crescendo. Anos depois, o papel-moeda chegou à Europa e mudou completamente a economia mundial, facilitando grandes compras, comércio internacional e expansão dos bancos.`
+
+},
+
+{
+titulo:"Sistema Bancário",
+
+cor:"#1d4ed8",
+
+gradiente:"linear-gradient(135deg,#0f172a,#1d4ed8,#60a5fa)",
+
+imagem:"banco.png",
+
+texto:`📅 Crescimento principal: Séculos XVII até XIX. Com o crescimento das cidades e do comércio mundial, os bancos começaram a ganhar importância. Eles guardavam dinheiro, realizavam empréstimos e ajudavam comerciantes e governos. As pessoas passaram a confiar mais nas instituições financeiras para proteger seu patrimônio. Foi nesse período que surgiu a moeda fiduciária, baseada na confiança das pessoas e dos governos. Isso significa que uma nota de dinheiro vale porque o governo garante seu uso. Os bancos modernos ajudaram no crescimento das empresas, das indústrias e da economia mundial.`
+
+},
+
+{
+titulo:"Cartões e Dinheiro Digital",
+
+cor:"#6d28d9",
+
+gradiente:"linear-gradient(135deg,#312e81,#6d28d9,#a78bfa)",
+
+imagem:"cartao.png",
+
+texto:`📅 Início: 1950 até atualmente. Uma das histórias mais famosas da economia aconteceu em 1949, quando o empresário Frank McNamara saiu para jantar em um restaurante de Nova York e percebeu que havia esquecido sua carteira. Depois dessa situação constrangedora, ele criou o Diners Club em 1950, considerado o primeiro cartão de crédito moderno do mundo. Décadas depois surgiram cartões magnéticos, caixas eletrônicos, internet banking, compras online, PIX e bancos digitais. Hoje grande parte do dinheiro circula virtualmente.`
+
+},
+
+{
+titulo:"Criptomoedas",
+
+cor:"#d4a017",
+
+gradiente:"linear-gradient(135deg,#111111,#d4a017,#ffd700)",
+
+imagem:"criptomoedas.jpg",
+
+texto:`📅 Início: 2009 até atualmente. As criptomoedas surgiram oficialmente em 2009 com a criação do Bitcoin, desenvolvido por uma pessoa ou grupo conhecido como Satoshi Nakamoto. O objetivo era criar um dinheiro totalmente digital sem depender de bancos ou governos. As criptomoedas utilizam uma tecnologia chamada blockchain, que registra transações em blocos digitais extremamente seguros. Hoje existem milhares de criptomoedas diferentes utilizadas em investimentos, pagamentos digitais, jogos e projetos tecnológicos. Elas representam uma das maiores revoluções financeiras da era digital.`
+
+}
+
+];
+
+function trocar(index, botao){
+
+document.getElementById("titulo").innerHTML =
+dados[index].titulo;
+
+document.getElementById("texto").innerHTML =
+dados[index].texto;
+
+document.getElementById("imagem").src =
+dados[index].imagem;
+
+document.body.style.background =
+dados[index].gradiente;
+
+document.getElementById("titulo").style.color =
+dados[index].cor;
+
+document.querySelector(".voltar").style.background =
+dados[index].cor;
+
+document.querySelectorAll(".timeline button")
+.forEach(btn => {
+
+btn.classList.remove("ativo");
+
+btn.style.background =
+"rgba(255,255,255,0.9)";
+
+btn.style.color =
+"#333";
+
+});
+
+botao.classList.add("ativo");
+
+botao.style.background =
+dados[index].cor;
+
+botao.style.color =
+"white";
+
+}
+
+</script>
+
+</body>
+</html>
