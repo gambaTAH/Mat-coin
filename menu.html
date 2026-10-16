@@ -1,501 +1,478 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Mat-coin</title>
+<title>Mat-Coin | Educação Financeira</title>
 
 <style>
-
-/* RESET */
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial, Helvetica, sans-serif;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
-/* BODY */
-
-body{
-
-    width:100%;
-    height:100vh;
-
-    background-image:url("fundo.png");
-    background-size:cover;
-    background-position:center;
-    background-repeat:no-repeat;
-
-    overflow:hidden;
-
-    display:flex;
-    flex-direction:column;
+body {
+    min-height: 100vh;
+    background-image: url("fundo.png");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    overflow-x: hidden;
 }
 
-/* SIDEBAR */
-
-.sidebar{
-
-    position:fixed;
-
-    top:0;
-    left:-320px;
-
-    width:290px;
-    height:100%;
-
-    background:white;
-
-    padding:35px 22px;
-
-    box-shadow:10px 0 30px rgba(0,0,0,0.2);
-
-    z-index:20;
-
-    transition:0.35s;
+/* MENU LATERAL */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -320px;
+    width: 290px;
+    height: 100%;
+    background: white;
+    padding: 35px 22px;
+    box-shadow: 10px 0 30px rgba(0,0,0,.2);
+    z-index: 20;
+    transition: .35s;
 }
 
-.sidebar.active{
-
-    left:0;
+.sidebar.active {
+    left: 0;
 }
 
-.sidebar h2{
-
-    color:#0a6b35;
-
-    font-size:32px;
-
-    margin-bottom:30px;
+.sidebar h2 {
+    color: #0a6b35;
+    font-size: 30px;
+    margin-bottom: 30px;
 }
 
-/* MENU ITEM */
-
-.menu-item{
-
-    width:100%;
-
-    padding:16px;
-
-    border-radius:16px;
-
-    margin-bottom:14px;
-
-    background:#f3f3f3;
-
-    color:#0a6b35;
-
-    font-size:17px;
-
-    font-weight:bold;
-
-    transition:0.3s;
-
-    cursor:pointer;
+.menu-item {
+    width: 100%;
+    padding: 16px;
+    border-radius: 16px;
+    margin-bottom: 14px;
+    background: #f3f3f3;
+    color: #0a6b35;
+    font-size: 16px;
+    font-weight: bold;
 }
 
-.menu-item:hover{
-
-    background:#19b95d;
-
-    color:white;
-
-    transform:translateX(5px);
+/* FUNDO DO MENU */
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.4);
+    opacity: 0;
+    pointer-events: none;
+    transition: .3s;
+    z-index: 15;
 }
 
-/* OVERLAY */
-
-.overlay{
-
-    position:fixed;
-
-    inset:0;
-
-    background:rgba(0,0,0,0.35);
-
-    opacity:0;
-
-    pointer-events:none;
-
-    transition:0.3s;
-
-    z-index:15;
+.overlay.active {
+    opacity: 1;
+    pointer-events: auto;
 }
 
-.overlay.active{
-
-    opacity:1;
-
-    pointer-events:auto;
+/* TOPO */
+.topo {
+    width: 100%;
+    padding: 24px;
 }
 
-/* MENU TOPO */
-
-.topo{
-
-    width:100%;
-
-    padding:25px;
+.menu-btn {
+    width: 65px;
+    height: 65px;
+    border-radius: 20px;
+    background: rgba(255,255,255,.15);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: .3s;
 }
 
-.menu-btn{
-
-    width:70px;
-    height:70px;
-
-    border-radius:22px;
-
-    background:rgba(255,255,255,0.10);
-
-    backdrop-filter:blur(5px);
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    cursor:pointer;
-
-    transition:0.3s;
+.menu-btn:hover {
+    transform: scale(1.05);
 }
 
-.menu-btn:hover{
-
-    transform:scale(1.05);
-}
-
-.menu-icon{
-
-    color:white;
-    font-size:38px;
+.menu-icon {
+    color: white;
+    font-size: 36px;
 }
 
 /* LOGO */
-
-.logo{
-
-    width:100%;
-
-    display:flex;
-    justify-content:center;
-
-    margin-top:-140px;
+.logo {
+    display: flex;
+    justify-content: center;
+    padding: 0 20px;
+    margin-top: -70px;
 }
 
-.logo img{
-
-    width:420px;
+.logo img {
+    width: 340px;
+    max-width: 75vw;
+    height: auto;
+    object-fit: contain;
 }
 
-/* AREA DOS CARDS */
-
-.cards{
-
-    flex:1;
-
-    display:flex;
-
-    justify-content:center;
-    align-items:center;
-
-    gap:50px;
-
-    padding:20px;
-
-    margin-top:-120px;
+/* APRESENTAÇÃO */
+.apresentacao {
+    text-align: center;
+    color: white;
+    padding: 10px 20px 25px;
+    text-shadow: 0 2px 8px rgba(0,0,0,.3);
 }
 
-/* CARD */
-
-.card{
-
-    width:380px;
-    height:220px;
-
-    background:rgba(255,255,255,0.95);
-
-    border-radius:30px;
-
-    padding:25px;
-
-    display:flex;
-    align-items:center;
-
-    gap:20px;
-
-    box-shadow:0px 10px 30px rgba(0,0,0,0.25);
-
-    transition:0.3s;
+.apresentacao h1 {
+    font-size: 27px;
+    margin-bottom: 8px;
 }
 
-.card:hover{
-
-    transform:translateY(-8px) scale(1.02);
+.apresentacao p {
+    font-size: 16px;
 }
 
-/* ICONE */
-
-.icone{
-
-    min-width:95px;
-    height:95px;
-
-    border-radius:24px;
-
-    background:linear-gradient(135deg,#18a84f,#2ecc71);
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    font-size:42px;
+/* CARDS DOS JOGOS */
+.cards {
+    width: min(1000px, 94%);
+    margin: 0 auto;
+    padding: 10px 0 45px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
 }
 
-/* TEXTO */
-
-.texto h2{
-
-    color:#0a6b35;
-
-    font-size:28px;
-
-    margin-bottom:10px;
-
-    min-height:65px;
+.card {
+    min-width: 0;
+    min-height: 205px;
+    background: rgba(255,255,255,.96);
+    border-radius: 25px;
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    box-shadow: 0 10px 30px rgba(0,0,0,.22);
+    transition: transform .3s, box-shadow .3s;
 }
 
-.texto p{
-
-    color:#555;
-
-    font-size:16px;
-
-    line-height:1.4;
-
-    margin-bottom:18px;
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 15px 35px rgba(0,0,0,.3);
 }
 
-/* BOTAO */
-
-.botao{
-
-    display:inline-block;
-
-    text-decoration:none;
-
-    background:linear-gradient(90deg,#0c8a44,#19b95d);
-
-    color:white;
-
-    padding:11px 24px;
-
-    border-radius:12px;
-
-    font-size:17px;
-    font-weight:bold;
-
-    transition:0.3s;
+/* ÍCONES */
+.icone {
+    flex: 0 0 76px;
+    width: 76px;
+    height: 76px;
+    border-radius: 21px;
+    background: linear-gradient(135deg,#18a84f,#2ecc71);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
 }
 
-.botao:hover{
-
-    transform:scale(1.05);
-
-    box-shadow:0px 5px 15px rgba(0,0,0,0.2);
+.icone.azul {
+    background: linear-gradient(135deg,#1266c5,#38b6ff);
 }
 
-/* RESPONSIVO */
+.icone.dourado {
+    background: linear-gradient(135deg,#d99a00,#ffcf40);
+}
 
-@media(max-width:1000px){
+.texto {
+    min-width: 0;
+}
 
-    body{
-        overflow-y:auto;
-        height:auto;
-        min-height:100vh;
+.texto h2 {
+    color: #0a6b35;
+    font-size: 23px;
+    line-height: 1.2;
+    margin-bottom: 10px;
+}
+
+.texto p {
+    color: #555;
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 16px;
+}
+
+/* BOTÕES */
+.botao {
+    display: inline-block;
+    text-decoration: none;
+    text-align: center;
+    background: linear-gradient(90deg,#0c8a44,#19b95d);
+    color: white;
+    padding: 11px 19px;
+    border-radius: 11px;
+    font-size: 15px;
+    font-weight: bold;
+    transition: .3s;
+}
+
+.botao:hover {
+    transform: scale(1.04);
+    box-shadow: 0 5px 15px rgba(0,0,0,.2);
+}
+
+.botao.azul {
+    background: linear-gradient(90deg,#1266c5,#279df0);
+}
+
+.botao.dourado {
+    background: linear-gradient(90deg,#bd8000,#e8ad13);
+}
+
+/* RODAPÉ */
+.rodape {
+    text-align: center;
+    color: white;
+    padding: 0 15px 22px;
+    font-size: 13px;
+    text-shadow: 0 2px 5px rgba(0,0,0,.4);
+}
+
+/* TABLETS */
+@media (max-width: 800px) {
+    .logo {
+        margin-top: -35px;
     }
 
-    .cards{
-
-        flex-direction:column;
-
-        margin-top:20px;
-
-        padding-bottom:50px;
+    .logo img {
+        width: 290px;
     }
 
+    .cards {
+        gap: 16px;
+    }
+
+    .card {
+        padding: 20px;
+        gap: 13px;
+    }
+
+    .icone {
+        flex-basis: 62px;
+        width: 62px;
+        height: 62px;
+        font-size: 30px;
+    }
+
+    .texto h2 {
+        font-size: 20px;
+    }
 }
 
-@media(max-width:600px){
-
-    .logo{
-        margin-top:-20px;
+/* CELULARES */
+@media (max-width: 560px) {
+    .topo {
+        padding: 16px;
     }
 
-    .logo img{
-        width:260px;
+    .menu-btn {
+        width: 54px;
+        height: 54px;
     }
 
-    .card{
-
-        width:90%;
-        height:auto;
-
-        flex-direction:column;
-
-        text-align:center;
+    .menu-icon {
+        font-size: 30px;
     }
 
-    .texto h2{
-
-        min-height:auto;
+    .logo {
+        margin-top: -15px;
     }
 
-    .sidebar{
-
-        width:78%;
-        left:-100%;
+    .logo img {
+        width: 250px;
     }
 
+    .apresentacao {
+        padding-top: 8px;
+    }
+
+    .apresentacao h1 {
+        font-size: 23px;
+    }
+
+    .apresentacao p {
+        font-size: 14px;
+    }
+
+    .cards {
+        width: 92%;
+        grid-template-columns: 1fr;
+        gap: 17px;
+        padding-bottom: 30px;
+    }
+
+    .card {
+        min-height: 175px;
+        padding: 22px;
+        border-radius: 22px;
+    }
+
+    .icone {
+        flex-basis: 70px;
+        width: 70px;
+        height: 70px;
+        font-size: 32px;
+    }
+
+    .texto h2 {
+        font-size: 22px;
+    }
+
+    .texto p {
+        font-size: 14px;
+    }
+
+    .sidebar {
+        width: 78%;
+        left: -100%;
+    }
 }
 
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        transition: none !important;
+    }
+}
 </style>
 </head>
+
 <body>
 
-<!-- SIDEBAR -->
-
+<!-- MENU LATERAL -->
 <div class="sidebar" id="sidebar">
-
     <h2>Integrantes</h2>
 
-    <div class="menu-item">
-        👨‍💻 Gustavo Damasceno
-    </div>
-
-    <div class="menu-item">
-        👨‍💻 Nome Integrante 2
-    </div>
-
-    <div class="menu-item">
-        👨‍💻 Nome Integrante 3
-    </div>
-
-    <div class="menu-item">
-        👨‍💻 Nome Integrante 4
-    </div>
-
+    <div class="menu-item">👨‍💻 Gustavo Damasceno</div>
+    <div class="menu-item">👨‍💻 Nome Integrante 2</div>
+    <div class="menu-item">👨‍💻 Nome Integrante 3</div>
+    <div class="menu-item">👨‍💻 Nome Integrante 4</div>
 </div>
 
-<!-- OVERLAY -->
+<!-- FUNDO ESCURO -->
+<div class="overlay" id="overlay" onclick="fecharMenu()"></div>
 
-<div
-class="overlay"
-id="overlay"
-onclick="fecharMenu()"
-></div>
-
-<!-- MENU -->
-
-<div class="topo">
-
-    <div class="menu-btn" onclick="abrirMenu()">
-        <div class="menu-icon">☰</div>
-    </div>
-
-</div>
+<!-- BOTÃO MENU -->
+<header class="topo">
+    <button class="menu-btn"
+            onclick="abrirMenu()"
+            aria-label="Abrir menu de integrantes"
+            aria-controls="sidebar"
+            aria-expanded="false"
+            id="menuBtn"
+            style="border:0">
+        <span class="menu-icon">☰</span>
+    </button>
+</header>
 
 <!-- LOGO -->
-
 <div class="logo">
-    <img src="matcoin.png" alt="Matcoin">
+    <img src="matcoin.png" alt="Logo Mat-Coin">
 </div>
 
-<!-- CARDS -->
+<!-- APRESENTAÇÃO -->
+<section class="apresentacao">
+    <h1>Educação financeira na prática!</h1>
+    <p>Aprenda, jogue e descubra como cuidar melhor do seu dinheiro.</p>
+</section>
 
-<div class="cards">
+<!-- JOGOS E ATIVIDADES -->
+<main class="cards">
 
     <!-- QUIZ -->
-
-    <div class="card">
-
-        <div class="icone">
-            📝
-        </div>
+    <article class="card">
+        <div class="icone">📝</div>
 
         <div class="texto">
-
             <h2>Quiz</h2>
+            <p>Teste seus conhecimentos sobre educação financeira e dinheiro.</p>
 
-            <p>
-                Teste seus conhecimentos sobre educação financeira e dinheiro.
-            </p>
-
-            <a href="quiz.html" class="botao">
-                Acessar →
-            </a>
-
+            <a href="quiz.html" class="botao">Acessar →</a>
         </div>
+    </article>
 
-    </div>
-
-    <!-- HISTORIA -->
-
-    <div class="card">
-
-        <div class="icone">
-            💰
-        </div>
+    <!-- HISTÓRIA DO DINHEIRO -->
+    <article class="card">
+        <div class="icone dourado">💰</div>
 
         <div class="texto">
-
             <h2>História do Dinheiro</h2>
+            <p>Descubra como o dinheiro surgiu e evoluiu ao longo do tempo.</p>
 
-            <p>
-                Descubra a evolução do dinheiro e sua importância ao longo do tempo.
-            </p>
-
-            <a href="historia1.html" class="botao">
-                Acessar →
-            </a>
-
+            <a href="historia1.html" class="botao dourado">Acessar →</a>
         </div>
+    </article>
 
-    </div>
+    <!-- CORRIDA FINANCEIRA -->
+    <article class="card">
+        <div class="icone azul">🎲</div>
 
-</div>
+        <div class="texto">
+            <h2>Corrida Financeira</h2>
+            <p>Avance pelas casas e desafie seus conhecimentos financeiros neste jogo.</p>
+
+            <a
+                href="https://gambatah.github.io/corrida-finaceira/"
+                class="botao azul"
+                target="_blank"
+                rel="noopener noreferrer">
+                Jogar agora →
+            </a>
+        </div>
+    </article>
+
+    <!-- A DANÇA DO DINHEIRO -->
+    <article class="card">
+        <div class="icone">💵</div>
+
+        <div class="texto">
+            <h2>A Dança do Dinheiro</h2>
+            <p>Faça escolhas financeiras, organize seu orçamento e administre seu dinheiro.</p>
+
+            <a
+                href="https://gambatah.github.io/a-dan-a-do-dinheiro/"
+                class="botao"
+                target="_blank"
+                rel="noopener noreferrer">
+                Jogar agora →
+            </a>
+        </div>
+    </article>
+
+</main>
+
+<footer class="rodape">
+    Mat-Coin • Aprender sobre dinheiro pode ser divertido!
+</footer>
 
 <script>
-
-function abrirMenu(){
-
-document
-.getElementById("sidebar")
-.classList
-.add("active");
-
-document
-.getElementById("overlay")
-.classList
-.add("active");
-
+function abrirMenu() {
+    document.getElementById("sidebar").classList.add("active");
+    document.getElementById("overlay").classList.add("active");
+    document.getElementById("menuBtn").setAttribute("aria-expanded", "true");
 }
 
-function fecharMenu(){
-
-document
-.getElementById("sidebar")
-.classList
-.remove("active");
-
-document
-.getElementById("overlay")
-.classList
-.remove("active");
-
+function fecharMenu() {
+    document.getElementById("sidebar").classList.remove("active");
+    document.getElementById("overlay").classList.remove("active");
+    document.getElementById("menuBtn").setAttribute("aria-expanded", "false");
 }
 
+document.addEventListener("keydown", function(event) {
+    if (event.key === "Escape") {
+        fecharMenu();
+    }
+});
 </script>
 
 </body>
